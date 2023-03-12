@@ -1,0 +1,20 @@
+body {
+    background-color: wheat;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.nav-wrapper {
+    background-color:  #966919;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer.page-footer{
+    background-color:  #966919;
+    padding-top: 0;
+    text-align: right;
+}

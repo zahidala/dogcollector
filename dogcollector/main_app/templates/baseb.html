@@ -1,0 +1,46 @@
+<!-- Using BootStrap CSS (unfinished) -->
+{%load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styleb.css' %}">
+    <title>Dog Collector</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #966919;">
+          <a class="navbar-brand text-white" href="/"> &nbsp; &nbsp; Dog Collector </a>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link text-white" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/dogs">View All My Dogs &nbsp;</a>
+            </li>
+          </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer class="text-end text-white fixed-bottom" style="background-color: #966914">
+      <!-- Copyright -->
+      <div class="text-end p-1">
+        All Rights Reserved, &copy; 2023 Dog Collector &nbsp;
+      </div>
+    </footer>
+    <!-- Footer -->
+</body>
+</html>
