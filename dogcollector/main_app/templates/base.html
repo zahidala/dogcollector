@@ -15,12 +15,12 @@
         <nav>
             <div class='nav-wrapper'>
                 <ul>
-                    <li><a href="/" class="'left brand-logo">&nbsp; &nbsp; Dog Collector</a></li>       
+                    <li><a href="{% url 'home' %}" class="'left brand-logo">&nbsp; &nbsp; Dog Collector</a></li>       
                 </ul>
 
                 <ul class='right'>
-                    <li><a href="/about">About</li></a>
-                    <li><a href="/dogs">View All My Dogs</li></a>
+                    <li><a href="{% url 'about' %}">About</li></a>
+                    <li><a href="{% url 'index' %}">View All My Dogs</li></a>
                 </ul>
             </div>
         </nav>
