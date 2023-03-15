@@ -6,6 +6,8 @@ from .models import Dog, Toy
 from .forms import FeedingForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -28,11 +30,13 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def dogs_index(request):
     # dogs = Dog.objects.all()
     dogs = Dog.objects.filter(user=request.user)
     return render(request, 'dogs/index.html', {'dogs': dogs})
 
+@login_required
 def dogs_detail(request, dog_id):
     dog = Dog.objects.get(id = dog_id)
     feeding_form = FeedingForm()
@@ -43,7 +47,7 @@ def dogs_detail(request, dog_id):
         'toys': toys_dog_doesnt_have
     })
 
-class DogCreate(CreateView):
+class DogCreate(LoginRequiredMixin, CreateView):
     model = Dog
     fields = ['name', 'breed', 'description', 'age', 'image']
     # fields = '__all__'
@@ -52,11 +56,11 @@ class DogCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class DogUpdate(UpdateView):
+class DogUpdate(LoginRequiredMixin, UpdateView):
     model = Dog
     fields = ['breed', 'description', 'age']
 
-class DogDelete(DeleteView):
+class DogDelete(LoginRequiredMixin, DeleteView):
     model = Dog
     success_url = '/dogs/'
 
@@ -68,22 +72,22 @@ def add_feeding(request, dog_id):
         new_feeding.save()
     return redirect('detail', dog_id=dog_id)
 
-class ToyList(ListView):
+class ToyList(LoginRequiredMixin, ListView):
     model = Toy
 
-class ToyDetail(DetailView):
-    model = Toy
-    fields = '__all__'
-
-class ToyCreate(CreateView):
+class ToyDetail(LoginRequiredMixin, DetailView):
     model = Toy
     fields = '__all__'
 
-class ToyUpdate(UpdateView):
+class ToyCreate(LoginRequiredMixin, CreateView):
+    model = Toy
+    fields = '__all__'
+
+class ToyUpdate(LoginRequiredMixin, UpdateView):
     model = Toy
     fields = ['name', 'color']
 
-class ToyDelete(DeleteView):
+class ToyDelete(LoginRequiredMixin, DeleteView):
     model = Toy
     success_url = '/toys/'
 
